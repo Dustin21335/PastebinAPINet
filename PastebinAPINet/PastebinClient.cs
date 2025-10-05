@@ -1,4 +1,4 @@
-﻿using PastebinAPINet;
+﻿using System.Net;
 using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 
@@ -441,6 +441,50 @@ namespace PastebinAPINet
                 logger.Error($"Post failed {ex.Message}");
             }
             return null;
+        }
+
+        /// <summary>
+        /// Changes the HttpClient to use the a proxy and tests the connection.
+        /// </summary>
+        /// <param name="handler">Proxy settings.</param>
+        public async Task ChangeProxy(HttpClientHandler httpClientHandler)
+        {
+            if (httpClient != null)
+            {
+                httpClient.Dispose();
+                logger.Log("Disposing of old http client");
+            }
+            httpClient = new HttpClient(httpClientHandler);
+            logger.Log("Updated http client to include proxy");
+            try
+            {
+                HttpResponseMessage response = await httpClient.GetAsync("https://api.ipify.org");
+                logger.Log($"Proxy test response {await response.Content.ReadAsStringAsync()}");
+                if (response.IsSuccessStatusCode) logger.Log($"Proxy connection successful");
+                else logger.Warning($"Proxy connection failed");
+            }
+            catch (Exception ex)
+            {
+                logger.Error($"Proxy connection failed {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Changes the HttpClient to use the a proxy and tests the connection.
+        /// </summary>
+        /// <param name="ip">Proxy IP address.</param>
+        /// <param name="port">Proxy port.</param>
+        /// <param name="username">Optional username for proxy.</param>
+        /// <param name="password">Optional password for proxy.</param>
+        public async Task ChangeProxy(string ip, string port, string? username = null, string? password = null)
+        {
+            HttpClientHandler httpClientHandler = new HttpClientHandler
+            {
+                Proxy = new WebProxy($"http://{ip}:{port}"),
+                UseProxy = true
+            };
+            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password)) httpClientHandler.Proxy.Credentials = new NetworkCredential(username, password);
+            await ChangeProxy(httpClientHandler);
         }
 
         /// <summary>
