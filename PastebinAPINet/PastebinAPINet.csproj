@@ -4,10 +4,10 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Title>Pastebin API .Net</Title>
-    <Company>0_0Dustin0_0</Company>
+
+    <Title>Pastebin API NET</Title>
     <Authors>0_0Dustin0_0</Authors>
-    <Copyright>0_0Dustin0_0</Copyright>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/Dustin21335/PastebinAPINet</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Dustin21335/PastebinAPINet</RepositoryUrl>
     <RepositoryType></RepositoryType>
@@ -18,5 +18,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
-
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 </Project>
