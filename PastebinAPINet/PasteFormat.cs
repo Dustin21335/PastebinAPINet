@@ -1,5 +1,6 @@
 ﻿namespace PastebinAPINet
 {
+    #pragma warning disable CS1591
     public enum PasteFormat
     {
         FourCS,

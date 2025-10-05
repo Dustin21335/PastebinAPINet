@@ -2,6 +2,7 @@
 
 namespace PastebinAPINet
 {
+    #pragma warning disable CS1591
     [XmlRoot("paste")]
     public class PastebinPaste
     {
