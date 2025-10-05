@@ -6,9 +6,8 @@
 ### Examples
 #### Creating a guest post
 ```csharp
-PastebinClient pastebinClient = new PastebinClient("DeveloperAPIKey", "Username", "Password");
-await pastebinClient.Login();
-string? pastebinURL = await pastebinClient.CreatePaste("Content", "Title", PasteExposure.Unlisted, PasteExpireDate.TenMinutes, PasteFormat.Text);
+PastebinClient pastebinClient = new PastebinClient("DeveloperAPIKey");
+string? pastebinURL = await pastebinClient.CreateGuestPaste("Content", "Title", PasteExposure.Unlisted, PasteExpireDate.TenMinutes, PasteFormat.Text);
 Console.WriteLine(pastebinURL);
 ```
 
@@ -110,6 +109,38 @@ Console.WriteLine(string.Join(", ", recentPastes ?? new List<string>()));
 PastebinClient pastebinClient = new PastebinClient("DeveloperAPIKey");
 List<string>? recentPastesKeys = await pastebinClient.GetRecentPastesKeys(8);
 Console.WriteLine(string.Join(", ", recentPastesKeys ?? new List<string>()));
+```
+
+#### Changing proxies
+```csharp
+PastebinClient pastebinClient = new PastebinClient("DeveloperAPIKey");
+await pastebinClient.ChangeProxy("Ip", "Port");
+```
+
+```csharp
+PastebinClient pastebinClient = new PastebinClient("DeveloperAPIKey");
+await pastebinClient.ChangeProxy("Ip", "Port", "Username", "Password");
+```
+
+```csharp
+PastebinClient pastebinClient = new PastebinClient("DeveloperAPIKey");
+await pastebinClient.ChangeProxy(new HttpClientHandler()
+{
+      Proxy = new WebProxy("http://Ip:Port"),
+      UseProxy = true
+});
+```
+
+```csharp
+PastebinClient pastebinClient = new PastebinClient("DeveloperAPIKey");
+await pastebinClient.ChangeProxy(new HttpClientHandler()
+{
+      Proxy = new WebProxy("http://Ip:Port")
+      {
+         Credentials = new NetworkCredential("Username", "Password")
+      },
+      UseProxy = true
+});
 ```
 
 #### Disposing
