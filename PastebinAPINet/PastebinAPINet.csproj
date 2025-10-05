@@ -8,10 +8,10 @@
     <Company>0_0Dustin0_0</Company>
     <Authors>0_0Dustin0_0</Authors>
     <Copyright>0_0Dustin0_0</Copyright>
-    <PackageProjectUrl>https://github.com/Dustin21335/PastebinAPI</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Dustin21335/PastebinAPI</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Dustin21335/PastebinAPINet</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Dustin21335/PastebinAPINet</RepositoryUrl>
     <RepositoryType></RepositoryType>
-    <PackageTags>pastebin, api, pastebin api</PackageTags>
+    <PackageTags>pastebin, api, pastebin api, net, dotnet</PackageTags>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
