@@ -4,11 +4,12 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
     <Title>Pastebin API NET</Title>
     <Authors>0_0Dustin0_0</Authors>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <PackageProjectUrl>https://github.com/Dustin21335/PastebinAPINet</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Dustin21335/PastebinAPINet</RepositoryUrl>
     <RepositoryType></RepositoryType>

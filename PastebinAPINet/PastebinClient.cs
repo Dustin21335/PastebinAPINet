@@ -29,7 +29,7 @@ namespace PastebinAPINet
         }
 
         /// <summary>
-        /// Creates a new Pastebin client without login. Useful for guest pastes.
+        /// Creates a new Pastebin client without login. 
         /// </summary>
         /// <param name="pastebinDeveloperKey">Pastebin developer key.</param>
         public PastebinClient(string pastebinDeveloperKey)
@@ -66,11 +66,16 @@ namespace PastebinAPINet
 
         private HashSet<string> KnownPastes { get; set; } = new HashSet<string>();
 
+        /// <summary>
+        /// Delegate for handling new pastes.
+        /// </summary>
+        /// <param name="pastebinURL">URL of the paste.</param>
+        /// <param name="pastebinKey">Key of the paste.</param>
+        public delegate void OnNewPasteHandler(string pastebinURL, string pastebinKey);
 
         /// <summary>
         /// Fired when a new paste is found. Only works if <see cref="StartOnPasteWatcher"/> is ran.
         /// </summary>
-        public delegate void OnNewPasteHandler(string pastebinURL, string pastebinKey);
         public event OnNewPasteHandler? OnNewPaste;
 
         /// <summary>
@@ -446,7 +451,7 @@ namespace PastebinAPINet
         /// <summary>
         /// Changes the HttpClient to use the a proxy and tests the connection.
         /// </summary>
-        /// <param name="handler">Proxy settings.</param>
+        /// <param name="httpClientHandler">Proxy settings.</param>
         public async Task ChangeProxy(HttpClientHandler httpClientHandler)
         {
             if (httpClient != null)
