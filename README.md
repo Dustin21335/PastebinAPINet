@@ -120,6 +120,28 @@ PastebinClient.PastebinUser pastebinUser = new PastebinClient.PastebinUser(paste
 await pastebinUser.Login();
 ```
 
+#### Handling user logging
+```csharp
+PastebinClient pastebinClient = new PastebinClient("DeveloperAPIKey");
+PastebinClient.PastebinUser pastebinUser = pastebinClient.CreatePastebinUser("Username", "Password");
+await pastebinUser.Login();
+pastebinUser.logger.OnLog += (logType, message) =>
+{
+    Console.WriteLine($"[{logType}] {message}");
+};
+```
+
+- Only logging warnings, and errors.
+```csharp
+PastebinClient pastebinClient = new PastebinClient("DeveloperAPIKey");
+PastebinClient.PastebinUser pastebinUser = pastebinClient.CreatePastebinUser("Username", "Password");
+await pastebinUser.Login();
+pastebinUser.logger.OnLog += (logType, message) =>
+{
+    if (logType != Logger.LogType.Log) Console.WriteLine($"[{logType}] {message}");
+};
+```
+
 #### Creating a user post
 ```csharp
 PastebinClient pastebinClient = new PastebinClient("DeveloperAPIKey");
